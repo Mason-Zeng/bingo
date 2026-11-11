@@ -5,15 +5,6 @@ import { STRINGS } from './i18n.js';
 const NAMES_KEY = 'bingo.names';
 const LANG_KEY = 'bingo.lang';
 
-// All 12 winning lines: 5 rows, 5 columns, 2 diagonals.
-const RANGE = [0, 1, 2, 3, 4];
-const LINES = [
-  ...RANGE.map((r) => RANGE.map((c) => r * 5 + c)),
-  ...RANGE.map((c) => RANGE.map((r) => r * 5 + c)),
-  [0, 6, 12, 18, 24],
-  [4, 8, 12, 16, 20],
-];
-
 function load(key, fallback) {
   try {
     const v = localStorage.getItem(key);
@@ -44,9 +35,8 @@ export default function App() {
   }, [lang, t.title]);
 
   const isMarked = (i) => i === FREE_INDEX || names[i].trim() !== '';
-  const winningLines = LINES.filter((line) => line.every(isMarked));
-  const winningCells = new Set(winningLines.flat());
   const filled = names.filter((_, i) => isMarked(i)).length;
+  const won = filled === 25; // blackout: the whole board must be filled
 
   const saveName = (i, value) => {
     setNames((prev) => prev.map((n, j) => (j === i ? value.trim() : n)));
@@ -75,8 +65,8 @@ export default function App() {
       </header>
 
       <div className="status" aria-live="polite">
-        {winningLines.length > 0 ? (
-          <span className="bingo-banner">{t.bingo(winningLines.length)}</span>
+        {won ? (
+          <span className="bingo-banner">{t.bingo}</span>
         ) : (
           <span>{t.progress(filled)}</span>
         )}
@@ -90,7 +80,7 @@ export default function App() {
         ))}
         {SQUARES.map((sq, i) => {
           const free = i === FREE_INDEX;
-          const classes = ['cell', isMarked(i) && 'marked', free && 'free', winningCells.has(i) && 'win']
+          const classes = ['cell', isMarked(i) && 'marked', free && 'free', won && 'win']
             .filter(Boolean)
             .join(' ');
           return (

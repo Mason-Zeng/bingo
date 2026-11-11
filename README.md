@@ -4,7 +4,7 @@ A 5×5 "find someone who…" bingo card built with React + Vite. Works on deskto
 
 - Tap a square, enter a person's name, and the square is crossed out.
 - The center square is FREE.
-- Completed rows, columns, and diagonals are highlighted and announced as BINGO.
+- Blackout rules: BINGO only when every square on the board has a name.
 - The 🌐 button switches all UI text between English and Simplified Chinese (names are left as typed).
 - Progress and language are saved in the browser (localStorage).
 

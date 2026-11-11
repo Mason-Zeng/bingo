@@ -1,0 +1,38 @@
+// All UI text, in English and Simplified Chinese.
+// Player names are never translated.
+export const STRINGS = {
+  en: {
+    title: 'Bingo',
+    subtitle: 'Find someone who matches each square and write their name in it.',
+    toggle: '中文',
+    toggleLabel: 'Switch to Chinese',
+    reset: 'Reset card',
+    resetConfirm: 'Clear all names from this card?',
+    progress: (n) => `${n} / 25 squares filled`,
+    bingo: (n) => (n === 1 ? 'BINGO! 🎉' : `BINGO ×${n}! 🎉`),
+    tapHint: 'Tap a square to add a name',
+    free: 'FREE',
+    enterName: 'Who matches this?',
+    namePlaceholder: 'Enter a name',
+    save: 'Save',
+    clear: 'Remove',
+    cancel: 'Cancel',
+  },
+  zh: {
+    title: '宾果',
+    subtitle: '找到符合每个格子描述的人，并写下他们的名字。',
+    toggle: 'English',
+    toggleLabel: '切换到英文',
+    reset: '重置卡片',
+    resetConfirm: '确定要清除卡片上的所有名字吗？',
+    progress: (n) => `已填 ${n} / 25 格`,
+    bingo: (n) => (n === 1 ? '宾果！🎉' : `宾果 ×${n}！🎉`),
+    tapHint: '点击格子添加名字',
+    free: '免费',
+    enterName: '谁符合这一条？',
+    namePlaceholder: '输入名字',
+    save: '保存',
+    clear: '删除',
+    cancel: '取消',
+  },
+};
